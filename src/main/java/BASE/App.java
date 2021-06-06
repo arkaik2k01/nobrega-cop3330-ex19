@@ -31,10 +31,46 @@ For Imperial measurements, prompt for feet and inches and convert feet to inches
 Use a GUI interface with sliders for height and weight. Update the user interface on the fly. Use colors as well as text to indicate health.
  */
 
+import java.util.Scanner;
+
 public class App
 {
+    static Scanner in = new Scanner(System.in);
+
     public static void main(String[] args)
     {
+        App prog = new App();
 
+        //input
+        System.out.print("What is your weight? ");
+        int weight = in.nextInt();
+        System.out.print("What is your height? ");
+        double height = in.nextDouble();
+        //Calculate
+        double bmi = prog.bmiCalc(weight, height);
+        //Output
+        prog.outputBMI(bmi);
+    }
+
+    private double bmiCalc(int weight, double height)
+    {
+        return (weight / (height * height)) * 703;
+    }
+
+    private void outputBMI(double bmi)
+    {
+        System.out.printf("Your BMI is %.2f%n", bmi);
+        if(bmi > 18.5 && bmi < 25)
+        {
+            System.out.println("You are within ideal range");
+        }
+        else if(bmi <= 18.5)
+        {
+            System.out.println("You are underweight.");
+        }
+        else
+        {
+            System.out.println("You are overweight.");
+        }
     }
 }
